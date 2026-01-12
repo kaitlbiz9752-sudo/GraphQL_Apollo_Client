@@ -1,0 +1,33 @@
+enum TypeCompte {
+    COURANT
+    EPARGNE
+}
+
+type Compte {
+    id: ID
+    solde: Float
+    dateCreation: String
+    type: TypeCompte
+}
+
+input CompteInput {
+    solde: Float
+    dateCreation: String
+    type: TypeCompte
+}
+
+type StatistiquesSolde {
+    nombreComptes: Int
+    totalSoldes: Float
+    moyenneSoldes: Float
+}
+
+type Query {
+    obtenirTousLesComptes: [Compte]
+    recupererCompteParId(id: ID!): Compte
+    obtenirStatistiquesSoldes: StatistiquesSolde
+}
+
+type Mutation {
+    creerCompte(input: CompteInput!): Compte
+}
